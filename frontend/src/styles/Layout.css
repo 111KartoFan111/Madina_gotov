@@ -1,0 +1,101 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f0f4f8;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
+                    linear-gradient(225deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
+                    linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%),
+                    linear-gradient(315deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%);
+  background-position: 24px 0, 24px 0, 0 0, 0 0;
+  background-size: 48px 48px;
+  background-repeat: repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(33, 150, 243, 0.2));
+  filter: blur(60px);
+  z-index: 0;
+  animation: float 15s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-30px) scale(1.1);
+  }
+}
+
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.main-content {
+  flex: 1;
+  padding: 28px;
+  margin-left: 70px; /* Match collapsed sidebar width */
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    10px 10px 20px rgba(0, 0, 0, 0.05),
+    -10px -10px 20px rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.main-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #4CAF50, #2196F3);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s ease;
+}
+
+.main-content:hover::after {
+  transform: scaleX(1);
+}
+
+.sidebar:hover ~ .main-content {
+  margin-left: 250px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 18px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .app-container::before {
+    opacity: 0.3;
+  }
+  
+  .main-content::after {
+    display: none;
+  }
+  .sidebar:hover ~ .main-content {
+    margin-left: 0px;
+  }
+}

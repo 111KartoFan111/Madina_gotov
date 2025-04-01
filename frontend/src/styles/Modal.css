@@ -1,0 +1,326 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(33, 33, 33, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: backdropAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  perspective: 1200px;
+}
+
+@keyframes backdropAppear {
+  0% {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    backdrop-filter: blur(5px);
+  }
+}
+
+.modal-container {
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  margin: 0 15px;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 32px;
+  position: relative;
+  overflow: auto;
+  max-height: 90vh;
+  animation: modalOpen 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.15),
+    0 10px 25px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  transform-origin: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes modalOpen {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(30px) rotateX(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotateX(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(245, 245, 245, 0.9);
+  border: none;
+  font-size: 0;
+  color: #616161;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.modal-close::before,
+.modal-close::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background-color: currentColor;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-close::before {
+  transform: rotate(45deg);
+}
+
+.modal-close::after {
+  transform: rotate(-45deg);
+}
+
+.modal-close:hover {
+  background-color: #f44336;
+  color: white;
+  transform: rotate(90deg);
+  box-shadow: 0 3px 15px rgba(244, 67, 54, 0.3);
+}
+
+.modal-content h2 {
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 24px;
+  font-weight: 700;
+  position: relative;
+  padding-left: 15px;
+  border-left: 4px solid #4CAF50;
+}
+
+.modal-header {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.modal-header::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, 
+    transparent, 
+    rgba(0, 0, 0, 0.08) 20%, 
+    rgba(0, 0, 0, 0.08) 80%, 
+    transparent);
+}
+
+.modal-body {
+  margin-bottom: 30px;
+  color: #444;
+  line-height: 1.6;
+  max-height: calc(90vh - 160px);
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #9e9e9e;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-btn-primary {
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  color: white;
+  box-shadow: 0 4px 10px rgba(46, 125, 50, 0.25);
+}
+
+.modal-btn-primary:hover {
+  box-shadow: 0 6px 15px rgba(46, 125, 50, 0.35);
+  transform: translateY(-2px);
+}
+
+.modal-btn-secondary {
+  background: #f5f5f5;
+  color: #424242;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.modal-btn-secondary:hover {
+  background: #eeeeee;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* АНИМАЦИИ ЗАКРЫТИЯ */
+.modal-overlay.closing {
+  animation: backdropDisappear 0.3s forwards cubic-bezier(0.4, 0, 1, 1);
+}
+
+.modal-overlay.closing .modal-content {
+  animation: modalClose 0.3s forwards cubic-bezier(0.4, 0, 1, 1);
+}
+
+@keyframes backdropDisappear {
+  from {
+    opacity: 1;
+    backdrop-filter: blur(5px);
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+}
+
+@keyframes modalClose {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+}
+
+/* LOADER СТИЛИЗАЦИЯ */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.spinner {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.spinner::before {
+  border: 4px solid rgba(76, 175, 80, 0.1);
+}
+
+.spinner::after {
+  border: 4px solid transparent;
+  border-top-color: #4CAF50;
+  animation: spinGrow 1.3s cubic-bezier(0.53, 0.21, 0.29, 0.67) infinite;
+}
+
+@keyframes spinGrow {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.loader-small .spinner {
+  width: 30px;
+  height: 30px;
+}
+
+.loader-small .spinner::before,
+.loader-small .spinner::after {
+  border-width: 3px;
+}
+
+.loader-large .spinner {
+  width: 70px;
+  height: 70px;
+}
+
+.loader-large .spinner::before,
+.loader-large .spinner::after {
+  border-width: 5px;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media screen and (max-width: 768px) {
+  .modal-content {
+    padding: 25px 20px;
+    border-radius: 20px;
+  }
+  
+  .modal-close {
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .modal-content h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .modal-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

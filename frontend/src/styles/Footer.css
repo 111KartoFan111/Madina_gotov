@@ -1,0 +1,135 @@
+.footer {
+  background-color: #ffffff;
+  padding: 22px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: none;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(230, 230, 230, 0.5) 10%,
+    rgba(230, 230, 230, 1) 50%,
+    rgba(230, 230, 230, 0.5) 90%,
+    transparent 100%
+  );
+}
+
+.footer-content {
+  font-size: 15px;
+  color: #757575;
+  position: relative;
+  display: inline-block;
+  padding: 0 20px;
+}
+
+.footer-content::before,
+.footer-content::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, #4CAF50, #2196F3);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.footer-content::before {
+  left: -30px;
+  transform-origin: left;
+}
+
+.footer-content::after {
+  right: -30px;
+  transform-origin: right;
+}
+
+.footer:hover .footer-content::before,
+.footer:hover .footer-content::after {
+  transform: scaleX(1);
+}
+
+/* Добавим соцсети или ссылки на дополнительные разделы */
+.footer-links {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.footer:hover .footer-links {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer-link {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  color: #424242;
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  background-color: #4CAF50;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+/* Эффект "сердцебиения" для любви к пользователям */
+.heart-icon {
+  color: #e91e63;
+  display: inline-block;
+  margin: 0 3px;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.2); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+  60% { transform: scale(1); }
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 15px 0;
+  }
+  
+  .footer-content {
+    font-size: 13px;
+    padding: 0 10px;
+  }
+  
+  .footer-content::before,
+  .footer-content::after {
+    width: 25px;
+  }
+  
+  .footer-links {
+    gap: 12px;
+  }
+  
+  .footer-link {
+    width: 26px;
+    height: 26px;
+  }
+}

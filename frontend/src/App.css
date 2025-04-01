@@ -1,0 +1,166 @@
+/* Түстер мен негізгі стиль айнымалылары */
+:root {
+  --primary-color: #4CAF50;     /* Негізгі түс */
+  --primary-dark: #388E3C;      /* Негізгі қою түс */
+  --primary-light: #81C784;     /* Негізгі ашық түс */
+  --secondary-color: #FFC107;   /* Қосымша түс */
+  --text-color: #333;           /* Мәтін түсі */
+  --text-light: #757575;        /* Мәтін ашық түсі */
+  --background-color: #f5f5f5;  /* Фон түсі */
+  --white: #fff;                /* Ақ түс */
+  --error-color: #d32f2f;       /* Қате хабарлама түсі */
+  --success-color: #388e3c;     /* Сәтті операция түсі */
+  --border-color: #ddd;         /* Жиек түсі */
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* Көлеңке */
+  --transition: all 0.3s ease;  /* Ауысу эффекті */
+}
+
+/* Барлық элементтер үшін негізгі стильдер */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Беттің негізгі стильдері */
+body {
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  line-height: 1.6;
+}
+
+/* Қолданба контейнерінің стилі */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Мазмұн орауышының стилі */
+.content-wrapper {
+  display: flex;
+  flex: 1;
+}
+
+/* Негізгі мазмұн аймағының стилі */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px; /* Бүйірлік панель енімен сәйкес */
+  transition: var(--transition);
+}
+
+/* Тақырып стильдері */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Сілтеме стильдері */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+/* Сілтеме үстіне меңзерді қойғандағы стиль */
+a:hover {
+  color: var(--primary-dark);
+}
+
+/* Батырма стильдері */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+/* Енгізу өрістерінің стильдері */
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+/* Фокусталған енгізу өрістерінің стильдері */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Қате хабарлама стилі */
+.error {
+  color: var(--error-color);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Қате енгізу өрісінің стилі */
+.input-error {
+  border-color: var(--error-color);
+}
+
+/* Жүктелу контейнерінің стилі */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* Бейімделгіш (responsive) стильдер */
+@media screen and (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+}
+
+/* Анимация кілт кадрлары */
+/* Жайлап пайда болу анимациясы */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Сол жақтан жылжу анимациясы */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  align-items: stretch;
+  flex-direction: column;
+}
+::-webkit-scrollbar {
+  display: none;
+}
